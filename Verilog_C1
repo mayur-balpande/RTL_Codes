@@ -1,0 +1,110 @@
+// RTL_Juhi Internship Diagram C1
+//Design code
+module C1(
+	input A,
+  input B,
+  input C,
+  input D,
+  output Y
+);
+
+
+wire W1;
+wire W2;
+  
+  
+  assign W1 = A & B;
+  assign W2 = C & D;
+  
+  assign Y = W1 | W2;
+  
+endmodule
+
+
+
+//Testbench Code
+module testbench;
+  reg A_tb, B_tb, C_tb, D_tb;
+  wire Y_tb;
+  
+  C1 dut(
+    .A(A_tb),
+    .B(B_tb),
+    .C(C_tb),
+    .D(D_tb),
+    .Y(Y_tb));
+  
+initial begin 
+  $monitor("Times = %0t, A=%b, B=%b, C=%b, D=%b, Y=%b", $time, A_tb, B_tb, C_tb, D_tb, Y_tb);
+
+
+//Test case
+	//Test case no.1
+    A_tb = 0; B_tb = 0; C_tb = 0; D_tb = 0;
+    #10;
+    
+	//Test case no.2
+    A_tb = 0; B_tb = 0; C_tb = 0; D_tb = 1;
+  #10;
+
+	//Test case no.3
+    A_tb = 0; B_tb = 0; C_tb = 1; D_tb = 0;
+  #10;
+
+	//Test case no.4
+    A_tb = 0; B_tb = 1; C_tb = 0; D_tb = 0;
+  #10;
+
+	//Test case no.5
+    A_tb = 0; B_tb = 1; C_tb = 0; D_tb = 1;
+  #10;
+
+	//Test case no.6
+    A_tb = 0; B_tb = 0; C_tb = 1; D_tb = 1;
+  #10;
+
+	//Test case no.7
+    A_tb = 0; B_tb = 1; C_tb = 1; D_tb = 0;
+  #10;
+
+	//Test case no.8
+    A_tb = 0; B_tb = 1; C_tb = 1; D_tb = 1;
+  #10;
+
+	//Test case no.9
+    A_tb = 1; B_tb = 0; C_tb = 0; D_tb = 0;
+  #10;
+
+	//Test case no.10
+    A_tb = 1; B_tb = 0; C_tb = 0; D_tb = 1;
+  #10;
+
+	//Test case no.11
+    A_tb = 1; B_tb = 0; C_tb = 1; D_tb = 0;
+  #10;
+
+	//Test case no.12
+    A_tb = 1; B_tb = 0; C_tb = 1; D_tb = 1;
+  #10;
+
+	//Test case no.13
+    A_tb = 1; B_tb = 1; C_tb = 0; D_tb = 0;
+  #10;
+
+	//Test case no.14
+    A_tb = 1; B_tb = 1; C_tb = 0; D_tb = 1;
+  #10;
+
+	//Test case no.15
+    A_tb = 1; B_tb = 1; C_tb = 1; D_tb = 0;
+  #10;
+
+	//Test case no.16
+    A_tb = 1; B_tb = 1; C_tb = 1; D_tb = 1;
+#10;    
+    $finish;
+  end
+endmodule
+  
+
+  
