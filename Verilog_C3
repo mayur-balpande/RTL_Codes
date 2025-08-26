@@ -1,0 +1,76 @@
+//Design Code
+module C3(
+    input A,
+    input B,
+    input C,
+    input S1,
+    input S0,
+    output Y
+);
+
+    wire mux1;
+    wire mux2;
+
+    assign mux1 = S1 ? B : A;
+
+   
+    assign mux2 = S0 ? C : mux1;
+
+ 
+    assign Y = mux2 ^ C;
+
+endmodule
+
+
+
+//Testbench Code
+`timescale 1ns / 1ps
+
+module C3_tb;
+
+   
+    reg A, B, C, S1, S0;
+
+    wire Y;
+C3 dut (
+        .A(A), 
+        .B(B),
+        .C(C),
+        .S1(S1),
+        .S0(S0),
+        .Y(Y)
+    );
+
+
+    initial begin
+       
+      $dumpfile("C3.vcd");
+      $dumpvars(0, C3_tb);
+
+        
+        $display("--- Test Case: S1=0, S0=0 (Y = A ^ C) ---");
+        A = 0; B = 0; S1 = 0; S0 = 0; C = 0; #10; 
+        A = 1; B = 0; S1 = 0; S0 = 0; C = 0; #10; 
+        A = 0; B = 0; S1 = 0; S0 = 0; C = 1; #10; 
+        A = 1; B = 0; S1 = 0; S0 = 0; C = 1; #10;
+
+        
+        $display("--- Test Case: S1=1, S0=0 (Y = B ^ C) ---");
+        A = 0; B = 0; S1 = 1; S0 = 0; C = 0; #10; 
+        A = 0; B = 1; S1 = 1; S0 = 0; C = 0; #10; 
+        A = 0; B = 0; S1 = 1; S0 = 0; C = 1; #10; 
+        A = 0; B = 1; S1 = 1; S0 = 0; C = 1; #10; 
+
+        
+        $display("--- Test Case: S1=0, S0=1 (Y = C ^ C = 0) ---");
+        A = 0; B = 0; S1 = 0; S0 = 1; C = 0; #10; 
+        A = 1; B = 1; S1 = 0; S0 = 1; C = 1; #10; 
+
+        
+        $display("--- Test Case: S1=1, S0=1 (Y = C ^ C = 0) ---");
+        A = 0; B = 0; S1 = 1; S0 = 1; C = 0; #10; 
+        A = 1; B = 1; S1 = 1; S0 = 1; C = 1; #10;
+        #10;
+        $finish;
+    end
+endmodule
