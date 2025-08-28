@@ -1,0 +1,97 @@
+// Design Code
+
+module C6(
+    input A, B, C, D,
+    output Y
+);
+    wire or_out;
+    wire and_out;
+    wire xor_out;
+    wire mux_out;
+
+    assign or_out = A | B;
+    assign and_out = C & D;
+    assign xor_out = A ^ B;
+    assign mux_out = xor_out ? and_out : or_out;
+    assign Y = ~(mux_out & D);
+
+endmodule
+
+
+//Testbench Code
+`timescale 1ns / 1ps
+
+
+module C6_tb;
+
+    
+    reg A, B, C, D;
+
+    
+    wire Y;
+
+    
+    C6 dut (
+        .A(A), 
+        .B(B),
+        .C(C),
+        .D(D),
+        .Y(Y)
+    );
+
+    
+    initial begin
+    
+      $dumpfile("C6.vcd");
+      $dumpvars(0, C6_tb);
+
+        
+        $display("--- Test Case: A=0, B=0 (XOR_OUT=0) ---");
+        A = 0; B = 0; C = 0; D = 0; 
+      #10;
+        A = 0; B = 0; C = 0; D = 1; 
+      #10;
+        A = 0; B = 0; C = 1; D = 0; 
+      #10;
+        A = 0; B = 0; C = 1; D = 1; 
+      #10;
+
+      
+        $display("--- Test Case: A=0, B=1 (XOR_OUT=1) ---");
+      
+        A = 0; B = 1; C = 0; D = 0; 
+      #10;
+        A = 0; B = 1; C = 0; D = 1; 
+      #10;
+        A = 0; B = 1; C = 1; D = 0; 
+      #10;
+        A = 0; B = 1; C = 1; D = 1; 
+      #10;
+
+       
+        $display("--- Test Case: A=1, B=0 (XOR_OUT=1) ---");
+       
+        A = 1; B = 0; C = 0; D = 0; 
+      #10;
+        A = 1; B = 0; C = 0; D = 1;
+      #10;
+        A = 1; B = 0; C = 1; D = 0; 
+      #10;
+        A = 1; B = 0; C = 1; D = 1; 
+      #10;
+
+    
+        $display("--- Test Case: A=1, B=1 (XOR_OUT=0) ---");
+        
+        A = 1; B = 1; C = 0; D = 0; 
+      #10; 
+        A = 1; B = 1; C = 0; D = 1; 
+      #10;
+        A = 1; B = 1; C = 1; D = 0; 
+      #10;  
+        A = 1; B = 1; C = 1; D = 1; 
+      #10;
+
+        $finish; 
+    end
+endmodule
