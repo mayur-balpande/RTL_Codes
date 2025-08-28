@@ -1,0 +1,66 @@
+//Design Code
+
+
+module C5(
+    input A,
+    input B,
+    input S,
+    output Y
+);
+
+   
+    wire Mux;
+
+    
+    assign Mux = S ? B : A;
+
+    assign Y = Mux | S;
+
+endmodule
+
+
+//Testbench Code
+
+`timescale 1ns / 1ps
+
+module C5_tb;
+    reg A, B, S;
+    wire Y;
+  
+  C5 dut (
+        .A(A), 
+        .B(B),
+        .S(S),
+        .Y(Y)
+    );
+
+    initial begin
+      $dumpfile("C5.vcd");
+      $dumpvars(0, C5_tb);
+
+        
+      
+        $display("--- Test Case: S=0 ---");
+       
+        A = 0; B = 0; S = 0; #10;
+      
+        A = 1; B = 0; S = 0; #10;
+      
+        A = 0; B = 1; S = 0; #10;
+       
+        A = 1; B = 1; S = 0; #10;
+
+        $display("--- Test Case: S=1 ---");
+       
+        A = 0; B = 0; S = 1; #10;
+        
+        A = 1; B = 0; S = 1; #10;
+        
+        A = 0; B = 1; S = 1; #10;
+       
+        A = 1; B = 1; S = 1; #10;
+
+        
+        $finish;
+    end
+endmodule
