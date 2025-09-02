@@ -1,0 +1,43 @@
+//Full adder Using 2 half adder data flow modeling
+
+module full_adder_DF (
+    input A,
+    input B,
+    input C_in,
+    output Sum,
+    output Carry_out
+);
+    wire sum1, carry1, carry2;
+    assign sum1 = A ^ B; 
+    assign carry1 = A & B; 
+    assign Sum = sum1 ^ C_in;
+    assign carry2 = sum1 & C_in;
+    assign Carry_out = carry1 | carry2;
+
+endmodule
+
+
+
+//Full adder using 2 half adder Gate level
+
+module full_adder_GL (
+    input A,
+    input B,
+    input C_in,
+    output Sum,
+    output Carry_out
+);
+
+   
+    wire sum1, carry1, carry2;
+    xor u1 (sum1, A, B);
+    
+    and u2 (carry1, A, B);
+
+   
+    xor u3 (Sum, sum1, C_in);
+  
+  and u4 (carry2, sum1, C_in);
+    or u5 (Carry_out, carry1, carry2);
+
+endmodule
