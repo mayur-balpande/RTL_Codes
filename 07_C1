@@ -1,0 +1,18 @@
+module 07_C1(
+    input A,
+    input B,
+    input C,
+    input D,
+    output Y
+);
+
+    wire S; 
+    wire E; 
+
+    assign S = A & B;
+    
+    assign E = S | C;
+    
+    assign Y = E ^ D;
+
+endmodule
