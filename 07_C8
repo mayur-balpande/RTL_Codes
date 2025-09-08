@@ -1,0 +1,17 @@
+module C8_07(
+input A,
+  input B,
+  input C,
+  input D,
+  output Y
+);
+
+wire S;
+  wire X;
+  
+  
+  assign S = ((~A) | B);
+  assign X = (S & (~C));
+  assign Y = ~((~X) | D);
+  
+endmodule
