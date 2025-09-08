@@ -1,17 +1,17 @@
 //c2
-module 07_C2(
+module C2_07(
 	input A,B,C,D,E,
   output Y
 );
   
   wire S;
-  wire E;
+  wire E1;
   wire X;
   
   
   assign S= A & B;
   assign E = C | D;
-  assign X = S ^ E;
+  assign X = S ^ E1;
   assign Y = X & E;
   
 endmodule
