@@ -1,0 +1,19 @@
+module C9_07(
+	input A,
+  input B,
+  input C,
+  input D,
+  input E,
+  output Y
+);
+  
+  wire S;
+  wire X;
+  wire M;
+  
+  assign S = ((~A) & (~B));
+  assign X = ~(C & D);
+  assign M = S & X;
+  assign Y = M ^ E;
+  
+endmodule
