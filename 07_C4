@@ -1,17 +1,18 @@
 
-module 07_C4(
+
+module C4_07(
 	input A,B,C,D,E,
   output Y
 );
   
   wire S;
-  wire E;
+  wire M;
   wire X;
   
   
   assign S= A & B;
-  assign E = S & C;
-  assign X = E & D;
+  assign M = S & C;
+  assign X = M & D;
   assign Y = X & E;
   
 endmodule
