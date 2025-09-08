@@ -1,17 +1,17 @@
 //c3
-module 07_c3(
+module C3_07(
 	input A,B,C,D,E,
   output Y
 );
   
   wire S;
-  wire E;
+  wire M;
   wire X;
   
   
   assign S= A | B;
-  assign E = C ^ D;
-  assign X = ~(S | E);
+  assign M = C ^ D;
+  assign X = ~(S | M);
   assign Y = ~(X & E);
   
 endmodule
